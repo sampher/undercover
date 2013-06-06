@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+body{
+margin: 0px;
+padding-right: 0px;
+padding-left: 0px;
+padding-top:0px;
+font-size: 12px;
+font-family: arial;
+}
+
+
+a{text-decoration: none;}
+
+.head {
+	width:100%;
+	background-image: url("../img/bg_logo_2.png");background-repeat:repeat-x;
+	height:144px;
+	z-index: 1;
+}
+
+
+.head .middle {width:940px;height:100%;margin-left:auto;margin-right:auto;background-image: url("../img/bg_logo_2.png");background-repeat:repeat-x;padding-left: 10px;padding-right: 10px;}
+.middle .logo {float:left;min-width:400px;width:auto; height:100%; background-image:url("../img/logo_2.png");background-repeat: no-repeat;}
+.head .middle .logo .title { position: relative; height:auto;width:auto;top:80px;color: white;left:128px;font-size: 20px;font-weight: bold;}
+.head .middle .logo .en_title { position: relative; height:auto;width:auto;top:80px;color: white;left:128px;font-size: 18px;font-weight: bold;}
+
+.base_info {z-index:99; width:100%;background-image: url("../img/bg_base_info.png") ;background-repeat: repeat-x;height:auto; background-position: bottom; left:0px;}
+.base_info .middle {width:940px;height:100%;margin-left:auto;margin-right:auto;background-image: url("../img/bg_base_info.png") ;background-repeat: repeat-x;background-position: bottom;padding-left: 10px;padding-right: 10px;padding-bottom: 4px;}
+.middle .info{width:900px;height:60px;display: block;}
+.info div{width:100px auto;line-height:25px;float:left;margin-right:30px;font-size:12px;white-space: nowrap;}
+.middle .btn{width:auto;height:auto;margin-right:2px; }
+.middle .btn input[type="button"]{width:auto;overflow:visible;text-align:center; height:auto;font-size:12px;cursor: pointer;}
+
+.content {z-index:1; width:940px;min-height:300px;height:auto;margin-left:auto;margin-right:auto; padding-left: 10px;padding: 10px 0px 10px 10px; }
+
+.editFormWindow {
+	position: fixed;
+	left: 50%;
+	top: 60px;;
+	margin-left: -471px;
+	display: none;
+}
+
+input[type="button"] {
+	cursor: pointer;
+}
+
+#table input[type="button"] {
+	height:40px;
+}
