@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<project name="undercover">
+	
+	<description> Familyan </description>
+	
+	<property name="java.encoding" value="UTF-8" />
+	<property name="project.name" value="undercover" />
+	<property name="undercover.jar.name" value="undercover.jar" />
+
+	<property name="dir.src" 			value="src" />
+	<property name="dir.src.java" 		value="src" />
+	
+	<property name="dir.target" 		value="build" />
+	<property name="dir.target.classes" value="build/classes" />
+	
+	<property name="dir.undercover.libs"	value="web/WEB-INF/lib" />
+	<property name="dir.web" value="web"  />
+	<property name="dir.target.web" value="build/undercover"  />
+	
+	<path id="classpath.runtime">
+		<fileset dir="${dir.undercover.libs}" includes="*.jar" />
+	</path>
+
+	<target name="clean" description="Removes all generated files">
+		<delete dir="${dir.target}" />
+	</target>
+	
+	<target name="prepare-compile" depends="clean">
+		<mkdir dir="${dir.target.classes}" />
+	</target>
+	
+	<target name="compile" depends="clean, prepare-compile" description="Compile eoims-legacy classes.">
+		<javac srcdir="${dir.src.java}" destdir="${dir.target.classes}" encoding="${java.encoding}" debug="true" includeantruntime="false">
+			<classpath refid="classpath.runtime" />
+		</javac>
+	</target>
+	
+	<target name="jar"  depends="compile" description="Generates ${undercover.jar.name} in ${dir.target} directory.">
+		<jar destfile="${dir.target}/${undercover.jar.name}">
+			<fileset dir="${dir.target.classes}" />
+		</jar>
+	</target>
+	
+	<target name="prepare-war" depends="jar" description="Prepare for war,move web files to ${dir.target} ">
+		<mkdir dir="${dir.target.web}" />
+		<copy todir="${dir.target.web}">
+	      <fileset dir="${dir.web}">
+	        <exclude name="**/*.java" />
+	        <exclude name="**/*.class" />
+	      </fileset>
+	    </copy>
+	</target>
+	
+	<target name="war" depends="prepare-war" description="Generates eoims.war in the ${dir.target} directory.">
+		<war destfile="${dir.target}/${project.name}.war" webxml="${dir.target.web}/WEB-INF/web.xml" compress="true">
+			<fileset dir="${dir.target.web}" />
+			<lib dir="${dir.target}">
+				<include name="${undercover.jar.name}" />
+			</lib>
+			<lib dir="${dir.undercover.libs}">
+				<include name="*.jar" />
+			</lib>
+		</war>
+	</target>
+</project>
